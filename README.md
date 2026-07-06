@@ -24,6 +24,7 @@ This repository is designed for teams aiming to achieve **repeatable, accurate, 
   * Drift-resistant (with correction hooks)
   * Lightweight (no external tracking wheels required)
 
+
 ### 🧭 RAMSETE Controller
 
 * Nonlinear time-varying feedback controller
@@ -41,6 +42,7 @@ This repository is designed for teams aiming to achieve **repeatable, accurate, 
 * More stable than PID-only tracking
 * Better performance on curves and dynamic paths
 
+
 ### 📈 2D Motion Profiling
 
 * Generates smooth trajectories in 2D space
@@ -52,6 +54,8 @@ This repository is designed for teams aiming to achieve **repeatable, accurate, 
 
   * Time-parameterised trajectories
   * Target pose + velocity at each timestep
+
+---
 
 ## ⚙️ How It Works
 
@@ -65,7 +69,6 @@ This repository is designed for teams aiming to achieve **repeatable, accurate, 
 (x, y, θ)
 ```
 
----
 
 ### 2. Trajectory Generation
 
@@ -80,7 +83,6 @@ This repository is designed for teams aiming to achieve **repeatable, accurate, 
   * Position vs time
   * Velocity vs time
 
----
 
 ### 3. RAMSETE Tracking
 
@@ -95,7 +97,6 @@ At each timestep:
   * Linear velocity (v)
   * Angular velocity (ω)
 
----
 
 ### 4. Drive Execution
 
