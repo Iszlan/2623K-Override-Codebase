@@ -1,4 +1,4 @@
-﻿# VEX Robotics Motion Stack
+﻿# 2623K Kingsmen VEX Robotics Codebase
 
 A modular robotics control system for **high-precision autonomous movement** in VEX Robotics, featuring:
 
@@ -24,8 +24,6 @@ This repository is designed for teams aiming to achieve **repeatable, accurate, 
   * Drift-resistant (with correction hooks)
   * Lightweight (no external tracking wheels required)
 
----
-
 ### 🧭 RAMSETE Controller
 
 * Nonlinear time-varying feedback controller
@@ -43,8 +41,6 @@ This repository is designed for teams aiming to achieve **repeatable, accurate, 
 * More stable than PID-only tracking
 * Better performance on curves and dynamic paths
 
----
-
 ### 📈 2D Motion Profiling
 
 * Generates smooth trajectories in 2D space
@@ -56,8 +52,6 @@ This repository is designed for teams aiming to achieve **repeatable, accurate, 
 
   * Time-parameterised trajectories
   * Target pose + velocity at each timestep
-
----
 
 ## ⚙️ How It Works
 
