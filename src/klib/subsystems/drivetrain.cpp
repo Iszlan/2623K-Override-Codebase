@@ -1,4 +1,5 @@
 #include "klib/klib.hpp"
+#include "pros/imu.hpp"
 
 
 namespace klib {
@@ -6,7 +7,7 @@ namespace klib {
     Drivetrain::Drivetrain(
             pros::MotorGroup &leftMotors,
             pros::MotorGroup &rightMotors,
-            pros::IMU &imu,
+            CustomIMU &customIMU,
             PID &lateralPID,
             PID &angularPID,
             float wheelSize,
@@ -19,7 +20,7 @@ namespace klib {
         ) :
         leftMotors(leftMotors),
         rightMotors(rightMotors),
-        imu(imu),
+        customIMU(customIMU),
         lateralPID(lateralPID),
         angularPID(angularPID),
         wheelSize(wheelSize),

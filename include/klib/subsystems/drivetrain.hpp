@@ -2,6 +2,7 @@
 #include <cmath>
 #include "pros/motor_group.hpp"
 #include "pros/imu.hpp"
+#include "klib/utils/customIMU.hpp"
 #include "pros/distance.hpp"
 #include "klib/utils/pid.hpp"
 
@@ -13,7 +14,7 @@ namespace klib {
         Drivetrain(
             pros::MotorGroup &leftMotors,
             pros::MotorGroup &rightMotors,
-            pros::IMU &imu,
+            CustomIMU &customIMU,
             PID &lateralPID,
             PID &angularPID,
             float wheelSize,
@@ -28,7 +29,7 @@ namespace klib {
         private:
         pros::MotorGroup &leftMotors;
         pros::MotorGroup &rightMotors;
-        pros::IMU &imu;
+        CustomIMU &customIMU;
         PID &lateralPID;
         PID &angularPID;
         pros::Distance frontDistanceSensor;
