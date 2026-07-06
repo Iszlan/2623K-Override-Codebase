@@ -59,35 +59,6 @@ This repository is designed for teams aiming to achieve **repeatable, accurate, 
 
 ---
 
-## 🏗️ Architecture
-
-```
-src/
-├── odom/
-│   ├── odometry.cpp
-│   ├── odometry.hpp
-│
-├── control/
-│   ├── ramsete.cpp
-│   ├── ramsete.hpp
-│
-├── motion/
-│   ├── trajectory.cpp
-│   ├── trajectory.hpp
-│
-├── subsystems/
-│   ├── drivetrain.cpp
-│   ├── drivetrain.hpp
-│
-├── utils/
-│   ├── math_utils.hpp
-│   ├── constants.hpp
-│
-main.cpp
-```
-
----
-
 ## ⚙️ How It Works
 
 ### 1. Odometry Update Loop
