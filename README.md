@@ -12,6 +12,8 @@ This repository is designed for teams aiming to achieve **repeatable, accurate, 
 
 ## 🚀 Features
 
+
+
 ### 📍 Odometry (IME + IMU Fusion)
 
 * Uses **Integrated Motor Encoders (IMEs)** for linear displacement
@@ -60,6 +62,8 @@ This repository is designed for teams aiming to achieve **repeatable, accurate, 
 ---
 
 ## ⚙️ How It Works
+
+
 
 ### 1. Odometry Update Loop
 
