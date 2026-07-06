@@ -10,10 +10,6 @@ This repository is designed for teams aiming to achieve **repeatable, accurate, 
 
 ---
 
-## 🚀 Features
-
-
-
 ### 📍 Odometry (IME + IMU Fusion)
 
 * Uses **Integrated Motor Encoders (IMEs)** for linear displacement
@@ -58,58 +54,5 @@ This repository is designed for teams aiming to achieve **repeatable, accurate, 
 
   * Time-parameterised trajectories
   * Target pose + velocity at each timestep
-
----
-
-## ⚙️ How It Works
-
-
-
-### 1. Odometry Update Loop
-
-* Reads encoder values + IMU heading
-* Computes incremental movement
-* Updates robot pose:
-
-```
-(x, y, θ)
-```
-
----
-
-### 2. Trajectory Generation
-
-* Define waypoints:
-
-```
-(0,0) → (24,24) → (48,0)
-```
-
-* Motion profiler generates:
-
-  * Position vs time
-  * Velocity vs time
-
----
-
-### 3. RAMSETE Tracking
-
-At each timestep:
-
-* Compare:
-
-  * Current pose (odometry)
-  * Target pose (trajectory)
-* Compute control outputs:
-
-  * Linear velocity (v)
-  * Angular velocity (ω)
-
----
-
-### 4. Drive Execution
-
-* Convert `(v, ω)` into left/right wheel speeds
-* Send commands to drivetrain
 
 ---
