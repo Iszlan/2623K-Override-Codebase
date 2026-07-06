@@ -10,7 +10,7 @@ This repository is designed for teams aiming to achieve **repeatable, accurate, 
 
 ---
 
-### 📍 Odometry (IME + IMU Fusion)
+### Odometry (IME + IMU Fusion)
 
 * Uses **Integrated Motor Encoders (IMEs)** for linear displacement
 * Uses **IMU** for heading estimation
@@ -24,7 +24,7 @@ This repository is designed for teams aiming to achieve **repeatable, accurate, 
 
 ---
 
-### 🧭 RAMSETE Controller
+### RAMSETE Controller
 
 * Nonlinear time-varying feedback controller
 * Tracks trajectories with:
@@ -43,7 +43,7 @@ This repository is designed for teams aiming to achieve **repeatable, accurate, 
 
 ---
 
-### 📈 2D Motion Profiling
+### 2D Motion Profiling
 
 * Generates smooth trajectories in 2D space
 * Supports:
