@@ -1,5 +1,7 @@
 ﻿# 2623K Kingsmen VEX Robotics Codebase
 
+---
+
 A modular robotics control system for **high-precision autonomous movement** in VEX Robotics, featuring:
 
 * IME + IMU based odometry
@@ -102,5 +104,3 @@ At each timestep:
 
 * Convert `(v, ω)` into left/right wheel speeds
 * Send commands to drivetrain
-
----
