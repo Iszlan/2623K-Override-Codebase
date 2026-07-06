@@ -1,6 +1,4 @@
-﻿# 2623K Kingsmen VEX Robotics Codebase
-
----
+# 2623K Kingsmen VEX Robotics Codebase
 
 A modular robotics control system for **high-precision autonomous movement** in VEX Robotics, featuring:
 
@@ -26,8 +24,7 @@ This repository is designed for teams aiming to achieve **repeatable, accurate, 
   * Drift-resistant (with correction hooks)
   * Lightweight (no external tracking wheels required)
 
-
-
+---
 
 ### 🧭 RAMSETE Controller
 
@@ -46,8 +43,7 @@ This repository is designed for teams aiming to achieve **repeatable, accurate, 
 * More stable than PID-only tracking
 * Better performance on curves and dynamic paths
 
-
-
+---
 
 ### 📈 2D Motion Profiling
 
@@ -61,8 +57,34 @@ This repository is designed for teams aiming to achieve **repeatable, accurate, 
   * Time-parameterised trajectories
   * Target pose + velocity at each timestep
 
+---
 
+## 🏗️ Architecture
 
+```
+src/
+├── odom/
+│   ├── odometry.cpp
+│   ├── odometry.hpp
+│
+├── control/
+│   ├── ramsete.cpp
+│   ├── ramsete.hpp
+│
+├── motion/
+│   ├── trajectory.cpp
+│   ├── trajectory.hpp
+│
+├── subsystems/
+│   ├── drivetrain.cpp
+│   ├── drivetrain.hpp
+│
+├── utils/
+│   ├── math_utils.hpp
+│   ├── constants.hpp
+│
+main.cpp
+```
 
 ---
 
@@ -78,8 +100,7 @@ This repository is designed for teams aiming to achieve **repeatable, accurate, 
 (x, y, θ)
 ```
 
-
-
+---
 
 ### 2. Trajectory Generation
 
@@ -94,8 +115,7 @@ This repository is designed for teams aiming to achieve **repeatable, accurate, 
   * Position vs time
   * Velocity vs time
 
-
-
+---
 
 ### 3. RAMSETE Tracking
 
@@ -110,13 +130,11 @@ At each timestep:
   * Linear velocity (v)
   * Angular velocity (ω)
 
-
-
+---
 
 ### 4. Drive Execution
 
 * Convert `(v, ω)` into left/right wheel speeds
 * Send commands to drivetrain
 
-
-
+---
