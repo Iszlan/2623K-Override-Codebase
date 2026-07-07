@@ -7,6 +7,8 @@ using namespace klib;
 
 
 // Temporary for Debugging
+pros::Controller con(pros::E_CONTROLLER_MASTER);
+
 pros::MotorGroup leftMotors({-13, -12, -11}); // 11 is 5.5
 pros::MotorGroup rightMotors({18, 19, 20}); // 20 is 5.5
 
@@ -110,11 +112,15 @@ void autonomous() {}
  * task, not resume it from where it left off.
  */
 void opcontrol() {
-	while (true) {
-		Pose pose = odom.getPose();
+    while (true) {
+        // Pose pose = odom.getPose();
 
-        printf("%f,%f,%f\n", pose.x, pose.y, pose.theta);
+        if (con.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_A)) {
+            pros::lcd::clear();
+            // pros::lcd::print(0, "Pose: x: %f, y: %f, theta: %f", pose.x, pose.y, pose.theta);
+            pros::lcd::print(0, "HI");
+        }
 
         pros::delay(10); // 100 Hz
-	}
+    }
 }
