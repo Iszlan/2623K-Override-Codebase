@@ -113,13 +113,9 @@ void autonomous() {}
  */
 void opcontrol() {
     while (true) {
-        // Pose pose = odom.getPose();
+        Pose pose = odom.getPose();
 
-        if (con.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_A)) {
-            pros::lcd::clear();
-            // pros::lcd::print(0, "Pose: x: %f, y: %f, theta: %f", pose.x, pose.y, pose.theta);
-            pros::lcd::print(0, "HI");
-        }
+        pros::lcd::print(0, "Pose: x: %.2f, y: %.2f, theta: %.2f", pose.x, pose.y, pose.theta * 180.0 / M_PI);
 
         pros::delay(10); // 100 Hz
     }
