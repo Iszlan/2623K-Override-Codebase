@@ -1,4 +1,48 @@
 #include "main.h"
+#include "klib/klib.hpp"
+#include "pros/imu.hpp"
+#include "pros/motors.hpp"
+
+using namespace klib;
+
+
+// Temporary for Debugging
+pros::MotorGroup leftMotors({-13, -12, -11}); // 11 is 5.5
+pros::MotorGroup rightMotors({18, 19, 20}); // 20 is 5.5
+
+pros::Imu imu(16);
+CustomIMU customIMU(imu, 1.01);
+
+PID lateralPID(10, 0.0, 0.0, true, 0.0, 0.0);
+PID angularPID(10, 0.0, 0.0, true, 0.0, 0.0);
+
+pros::Distance frontDistanceSensor(2);
+pros::Distance rightDistanceSensor(3);
+pros::Distance backDistanceSensor(4);
+pros::Distance leftDistanceSensor(5);
+
+Drivetrain drivetrain(
+	leftMotors,
+	rightMotors,
+	customIMU,
+	lateralPID,
+	angularPID,
+	frontDistanceSensor,
+	rightDistanceSensor,
+	backDistanceSensor,
+	leftDistanceSensor
+);
+
+Odometry odom(
+	leftMotors,
+	rightMotors,
+	customIMU,
+	3.25,
+	0.75,
+	10.75
+);
+
+
 
 
 /**
@@ -20,6 +64,8 @@ void initialize() {
 	pros::lcd::set_text(1, "Hello PROS User!");
 
 	pros::lcd::register_btn1_cb(on_center_button);
+
+	odom.startTask();
 }
 
 /**
@@ -68,6 +114,10 @@ void autonomous() {}
  */
 void opcontrol() {
 	while (true) {
-		
+		Pose pose = odom.getPose();
+
+        printf("%f,%f,%f\n", pose.x, pose.y, pose.theta);
+
+        pros::delay(10); // 100 Hz
 	}
 }

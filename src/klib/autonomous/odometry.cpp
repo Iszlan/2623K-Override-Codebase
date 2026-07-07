@@ -103,4 +103,4 @@ namespace klib {
         prevHeading = newPose.theta;
     }
 
-} // namespace klib
+} // klib

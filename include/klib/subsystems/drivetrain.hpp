@@ -29,10 +29,10 @@ namespace klib {
         CustomIMU &customIMU;
         PID &lateralPID;
         PID &angularPID;
-        pros::Distance frontDistanceSensor;
-        pros::Distance rightDistanceSensor;
-        pros::Distance backDistanceSensor;
-        pros::Distance leftDistanceSensor;
+        pros::Distance &frontDistanceSensor;
+        pros::Distance &rightDistanceSensor;
+        pros::Distance &backDistanceSensor;
+        pros::Distance &leftDistanceSensor;
     };
 
 } // klib
