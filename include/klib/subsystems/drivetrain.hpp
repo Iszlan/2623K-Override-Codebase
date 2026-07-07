@@ -17,9 +17,6 @@ namespace klib {
             CustomIMU &customIMU,
             PID &lateralPID,
             PID &angularPID,
-            float wheelSize,
-            float driveRPM,
-            float trackWidth,
             pros::Distance &frontDistanceSensor,
             pros::Distance &rightDistanceSensor,
             pros::Distance &backDistanceSensor,
@@ -36,10 +33,6 @@ namespace klib {
         pros::Distance rightDistanceSensor;
         pros::Distance backDistanceSensor;
         pros::Distance leftDistanceSensor;
-
-        const float wheelSize;
-        const float driveRPM;
-        const float trackWidth;
     };
 
 } // klib

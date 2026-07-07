@@ -1,5 +1,4 @@
 #include "klib/klib.hpp"
-#include "pros/imu.hpp"
 
 
 namespace klib {
@@ -10,9 +9,6 @@ namespace klib {
             CustomIMU &customIMU,
             PID &lateralPID,
             PID &angularPID,
-            float wheelSize,
-            float driveRPM,
-            float trackWidth,
             pros::Distance &frontDistanceSensor,
             pros::Distance &rightDistanceSensor,
             pros::Distance &backDistanceSensor,
@@ -23,9 +19,6 @@ namespace klib {
         customIMU(customIMU),
         lateralPID(lateralPID),
         angularPID(angularPID),
-        wheelSize(wheelSize),
-        driveRPM(driveRPM),
-        trackWidth(trackWidth),
         frontDistanceSensor(frontDistanceSensor),
         rightDistanceSensor(rightDistanceSensor),
         backDistanceSensor(backDistanceSensor),
