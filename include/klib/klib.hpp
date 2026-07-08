@@ -4,3 +4,4 @@
 #include "autonomous/odometry.hpp" // IWYU pragma: keep
 #include "utils/drivetrainMotorGroup.hpp" // IWYU pragma: keep
 #include "autonomous/motions/moveToPoint.hpp" // IWYU pragma: keep
+#include "utils/normaliseAngle.hpp" // IWYU pragma: keep

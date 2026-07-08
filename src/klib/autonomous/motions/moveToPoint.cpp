@@ -1,20 +1,7 @@
 #include "klib/klib.hpp" // IWYU pragma: keep
-#include <cmath>
 #include <algorithm>
 
 namespace klib {
-
-    namespace temp {
-        double normaliseAngle(double angle) {
-            double wrapped = std::fmod(angle + M_PI, 2.0 * M_PI);
-            if (wrapped < 0) {
-                wrapped += 2.0 * M_PI;
-            }
-            return wrapped - M_PI;
-        }
-
-    } // temp namespace
-
 
     void Drivetrain::moveToPoint(double x, double y, int timeoutMs, MoveToPointParams params) {
         waitUntilDone();
@@ -75,6 +62,8 @@ namespace klib {
         Pose startPose = odom.getPose();
         double initialDistance = std::hypot(x - startPose.x, y - startPose.y);
 
+        int settleTimer = 0; // accumulates ms spent continuously within settleDistance
+
         while ((pros::millis() - startTime) < (uint32_t)timeoutMs) {
             Pose pose = odom.getPose();
 
@@ -94,6 +83,12 @@ namespace klib {
             }
 
             if (distanceRemaining < params.settleDistance) {
+                settleTimer += 10;
+            } else {
+                settleTimer = 0;
+            }
+
+            if (settleTimer >= params.settleTime) {
                 break;
             }
 
@@ -101,13 +96,17 @@ namespace klib {
                 ? std::atan2(dx, dy)
                 : std::atan2(-dx, -dy);
 
-            double angleError = temp::normaliseAngle(targetHeading - pose.theta);
+            double angleError = radians::normaliseAngle(targetHeading - pose.theta);
             double angleErrorDeg = angleError * (180.0 / M_PI); // angularPID is tuned in degrees
 
             double distanceError = params.forwards ? distanceRemaining : -distanceRemaining;
 
             double lateralOutput = lateralPID.update(distanceError) * std::cos(angleError);
-            double angularOutput = angularPID.update(angleErrorDeg);
+
+            double angularOutput = 0.0;
+            if (distanceRemaining > 7.0) {
+                angularOutput = angularPID.update(angleErrorDeg);
+            }
 
             lateralOutput = std::clamp(lateralOutput, -maxVoltageMv, maxVoltageMv);
             angularOutput = std::clamp(angularOutput, -maxVoltageMv, maxVoltageMv);

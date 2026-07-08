@@ -8,6 +8,7 @@ namespace klib {
         double minVoltage = 0.0;
         double earlyExitRange = 0.0;
         double settleDistance = 1.0;
+        int settleTime = 100;
     };
 
 } // klib

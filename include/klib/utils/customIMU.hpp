@@ -8,7 +8,6 @@ namespace klib {
         CustomIMU(pros::Imu &imu, float scaleFactor);
 
         double getInertialHeading();
-        double normaliseTarget();
         double setIMUHeading(double targetHeading);
 
         private:

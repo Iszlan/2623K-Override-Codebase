@@ -1,5 +1,6 @@
 #include "main.h"
 #include "klib/klib.hpp" // IWYU pragma: keep
+#include "klib/subsystems/drivetrain.hpp"
 #include "pros/abstract_motor.hpp"
 #include "pros/imu.hpp"
 #include "pros/motors.hpp"
@@ -25,8 +26,8 @@ klib::DrivetrainMotorGroup rightMotors(rightBack, rightMid, rightFront);
 pros::Imu imu(16);
 CustomIMU customIMU(imu, 1.01);
 
-PID lateralPID(10, 0.0, 0.0, true, 0.0, 0.0);
-PID angularPID(10, 0.0, 0.0, true, 0.0, 0.0);
+PID lateralPID(8.0, 0.0, 16.0, true, 0.0, 2000.0);
+PID angularPID(2.5, 0.1, 13.5, true, 5, 0.0);
 
 pros::Distance frontDistanceSensor(2);
 pros::Distance rightDistanceSensor(3);
@@ -60,18 +61,21 @@ Drivetrain drivetrain(
 void initialize() {
 	pros::lcd::initialize();
 
+	pros::Task([&] {
+        while (true) {
+			Pose pose = odom.getPose();
+
+            pros::lcd::print(0, "x: %.2f", pose.x);
+			pros::lcd::print(1, "y: %.2f", pose.y);
+			pros::lcd::print(2, "theta: %.2f", pose.theta * 180.0 / M_PI);
+
+			pros::delay(50);
+        }
+    });
+
 	imu.reset(true);
 
 	odom.startTask();
-	pros::delay(100);
-
-	pros::Task([&] {
-        while (true) {
-            pros::lcd::print(0, "x: %.2f", odom.getPose().x);
-			pros::lcd::print(1, "y: %.2f", odom.getPose().y);
-			pros::lcd::print(2, "theta: %.2f", odom.getPose().theta * 180.0 / M_PI);
-        }
-    });
 }
 
 
@@ -85,6 +89,9 @@ void autonomous() {
 	drivetrain.setBrakeMode(pros::E_MOTOR_BRAKE_HOLD);
 
 	drivetrain.moveToPoint(0, 24, 2000);
+	drivetrain.moveToPoint(12, 10, 2000, {.forwards=false, .maxVoltage=8});
+	drivetrain.turnToAngle(45, 2000);
+	drivetrain.moveToPoint(0, 0, 2000);
 }
 
 

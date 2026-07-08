@@ -7,6 +7,7 @@
 #include "klib/utils/drivetrainMotorGroup.hpp"
 #include "klib/autonomous/odometry.hpp"
 #include "klib/autonomous/motions/moveToPoint.hpp"
+#include "klib/autonomous/motions/turnToAngle.hpp"
 
 
 namespace klib {
@@ -30,10 +31,13 @@ namespace klib {
         void waitUntil(float distance);
         void waitUntilDone();
 
+        void turnToAngle(double angle, int timeoutMs, TurnToAngleParams params = {});
+
         void setBrakeMode(pros::motor_brake_mode_e_t mode);
 
         private:
         void moveToPointTask(double x, double y, int timeoutMs, MoveToPointParams params);
+        void turnToAngleTask(double angle, int timeoutMs, TurnToAngleParams params);
 
         DrivetrainMotorGroup &leftMotors;
         DrivetrainMotorGroup &rightMotors;

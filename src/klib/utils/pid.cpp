@@ -79,7 +79,7 @@ namespace klib {
         double derivative = currError - prevError;
         prevError = currError;
  
-        double rawOutput = (currError * kp) + (integral * ki) + (derivative * kd);
+        double rawOutput = 100 * ((currError * kp) + (integral * ki) + (derivative * kd));
  
         double output = slewLimit(rawOutput);
         prevOutput = output;
