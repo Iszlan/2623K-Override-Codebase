@@ -5,6 +5,7 @@
 #include "klib/utils/customIMU.hpp"
 #include "pros/distance.hpp"
 #include "klib/utils/pid.hpp"
+#include "klib/utils/drivetrainMotorGroup.hpp"
 
 
 namespace klib {
@@ -12,8 +13,8 @@ namespace klib {
     class Drivetrain {
         public:
         Drivetrain(
-            pros::MotorGroup &leftMotors,
-            pros::MotorGroup &rightMotors,
+            DrivetrainMotorGroup &leftMotors,
+            DrivetrainMotorGroup &rightMotors,
             CustomIMU &customIMU,
             PID &lateralPID,
             PID &angularPID,
@@ -24,8 +25,8 @@ namespace klib {
         );
 
         private:
-        pros::MotorGroup &leftMotors;
-        pros::MotorGroup &rightMotors;
+        DrivetrainMotorGroup &leftMotors;
+        DrivetrainMotorGroup &rightMotors;
         CustomIMU &customIMU;
         PID &lateralPID;
         PID &angularPID;

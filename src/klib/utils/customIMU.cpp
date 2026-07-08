@@ -8,20 +8,18 @@ namespace klib {
         scaleFactor(scaleFactor)
         {}
 
-    // Radians
-    double CustomIMU::getInertialHeading() {
-        return imu.get_heading() * M_PI / 180.0 * scaleFactor;
+
+    double normaliseAngle(double angle) {
+        angle = std::fmod(angle, 360.0);
+        if (angle < 0) {
+            angle += 360.0;
+        }
+        return angle * M_PI / 180.0; // Convert to radians
     }
 
-    double CustomIMU::normaliseTarget() {
-        double heading = getInertialHeading();
-        while (heading < 0) {
-            heading += (2 * M_PI);
-        }
-        while (heading >= 2 * M_PI) {
-            heading -= (2 * M_PI);
-        }
-        return heading;
+    // Radians
+    double CustomIMU::getInertialHeading() {
+        return normaliseAngle(imu.get_heading() * scaleFactor);
     }
 
     double CustomIMU::setIMUHeading(double targetHeading) {

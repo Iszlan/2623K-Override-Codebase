@@ -4,14 +4,15 @@
 #include "pros/rtos.hpp"
 #include "klib/utils/pose.hpp"
 #include "klib/utils/customIMU.hpp"
+#include "klib/utils/drivetrainMotorGroup.hpp"
 
 namespace klib {
 
     class Odometry {
         public:
         Odometry(
-            pros::MotorGroup &leftMotors,
-            pros::MotorGroup &rightMotors,
+            DrivetrainMotorGroup &leftMotors,
+            DrivetrainMotorGroup &rightMotors,
             CustomIMU &customIMU,
             double wheelDiameter,
             double gearRatio,
@@ -27,8 +28,8 @@ namespace klib {
         private:
         void update();
 
-        pros::MotorGroup &leftMotors;
-        pros::MotorGroup &rightMotors;
+        DrivetrainMotorGroup &leftMotors;
+        DrivetrainMotorGroup &rightMotors;
         CustomIMU &customIMU;
 
         const double wheelCircumference;

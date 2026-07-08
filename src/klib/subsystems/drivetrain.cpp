@@ -4,8 +4,8 @@
 namespace klib {
 
     Drivetrain::Drivetrain(
-            pros::MotorGroup &leftMotors,
-            pros::MotorGroup &rightMotors,
+            klib::DrivetrainMotorGroup &leftMotors,
+            klib::DrivetrainMotorGroup &rightMotors,
             CustomIMU &customIMU,
             PID &lateralPID,
             PID &angularPID,

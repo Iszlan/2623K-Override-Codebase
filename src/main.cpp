@@ -1,5 +1,6 @@
 #include "main.h"
 #include "klib/klib.hpp"
+#include "pros/abstract_motor.hpp"
 #include "pros/imu.hpp"
 #include "pros/motors.hpp"
 
@@ -9,8 +10,16 @@ using namespace klib;
 // Temporary for Debugging
 pros::Controller con(pros::E_CONTROLLER_MASTER);
 
-pros::MotorGroup leftMotors({-13, -12, -11}); // 11 is 5.5
-pros::MotorGroup rightMotors({18, 19, 20}); // 20 is 5.5
+pros::Motor leftBack(-13, pros::v5::MotorGears::blue);
+pros::Motor leftMid(-12, pros::v5::MotorGears::blue);
+pros::Motor leftFront(-11, pros::v5::MotorGears::green);
+
+pros::Motor rightBack(18, pros::v5::MotorGears::blue);
+pros::Motor rightMid(19, pros::v5::MotorGears::blue);
+pros::Motor rightFront(20, pros::v5::MotorGears::green);
+
+klib::DrivetrainMotorGroup leftMotors(leftBack, leftMid, leftFront);
+klib::DrivetrainMotorGroup rightMotors(rightBack, rightMid, rightFront);
 
 pros::Imu imu(16);
 CustomIMU customIMU(imu, 1.01);
@@ -63,6 +72,8 @@ void on_center_button() {}
  */
 void initialize() {
 	pros::lcd::initialize();
+
+	imu.reset(true);
 
 	odom.startTask();
 }
