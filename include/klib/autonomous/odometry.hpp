@@ -1,6 +1,4 @@
 #pragma once
-#include "pros/motor_group.hpp"
-#include "pros/imu.hpp"
 #include "pros/rtos.hpp"
 #include "klib/utils/pose.hpp"
 #include "klib/utils/customIMU.hpp"

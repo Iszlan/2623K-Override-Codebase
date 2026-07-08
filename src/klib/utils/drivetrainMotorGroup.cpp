@@ -20,4 +20,10 @@ namespace klib {
         return averagePosition;
     }
 
+    void DrivetrainMotorGroup::setBrakeMode(pros::motor_brake_mode_e_t mode) {
+        motor1.set_brake_mode(mode);
+        motor2.set_brake_mode(mode);
+        halfMotor3.set_brake_mode(mode);
+    }
+
 } // klib

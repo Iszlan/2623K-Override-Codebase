@@ -1,4 +1,4 @@
-#include "klib/klib.hpp"
+#include "klib/klib.hpp" // IWYU pragma: keep
 
 
 namespace klib {
@@ -9,6 +9,7 @@ namespace klib {
             CustomIMU &customIMU,
             PID &lateralPID,
             PID &angularPID,
+            Odometry &odom,
             pros::Distance &frontDistanceSensor,
             pros::Distance &rightDistanceSensor,
             pros::Distance &backDistanceSensor,
@@ -19,10 +20,16 @@ namespace klib {
         customIMU(customIMU),
         lateralPID(lateralPID),
         angularPID(angularPID),
+        odom(odom),
         frontDistanceSensor(frontDistanceSensor),
         rightDistanceSensor(rightDistanceSensor),
         backDistanceSensor(backDistanceSensor),
         leftDistanceSensor(leftDistanceSensor)
         {}
+
+        void Drivetrain::setBrakeMode(pros::motor_brake_mode_e_t mode) {
+            leftMotors.setBrakeMode(mode);
+            rightMotors.setBrakeMode(mode);
+        }
 
 } // klib
