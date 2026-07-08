@@ -22,35 +22,6 @@ namespace klib {
         });
     }
 
-    void Drivetrain::waitUntil(float distance) {
-        while (true) {
-            motionMutex.take(TIMEOUT_MAX);
-            double travelled = distanceTravelled;
-            bool running = motionRunning;
-            motionMutex.give();
-
-            if (travelled >= distance || !running) {
-                break;
-            }
-
-            pros::delay(10);
-        }
-    }
-
-    void Drivetrain::waitUntilDone() {
-        while (true) {
-            motionMutex.take(TIMEOUT_MAX);
-            bool running = motionRunning;
-            motionMutex.give();
-
-            if (!running) {
-                break;
-            }
-
-            pros::delay(10);
-        }
-    }
-
     void Drivetrain::moveToPointTask(double x, double y, int timeoutMs, MoveToPointParams params) {
         lateralPID.reset();
         angularPID.reset();

@@ -1,4 +1,4 @@
-#include "klib/klib.hpp"
+#include "klib/klib.hpp" // IWYU pragma: keep
 #include <cmath>
 #include <algorithm>
 
@@ -14,6 +14,7 @@ namespace klib {
         }
 
         motionMutex.take(TIMEOUT_MAX);
+        distanceTravelled = 0;
         motionRunning = true;
         motionMutex.give();
 
@@ -33,6 +34,8 @@ namespace klib {
 
         double targetAngle = angleDegrees * (M_PI / 180.0);
 
+        double startHeadingDeg = odom.getPose().theta * (180.0 / M_PI);
+
         int settleTimer = 0;
         bool exitedEarly = false;
 
@@ -41,8 +44,17 @@ namespace klib {
             Pose pose = odom.getPose();
 
             double errorRad = radians::normaliseAngle(targetAngle - pose.theta);
-
             double errorDeg = errorRad * (180.0 / M_PI);
+
+            double currentHeadingDeg = pose.theta * (180.0 / M_PI);
+            double headingDeltaDeg = radians::normaliseAngle(
+                (currentHeadingDeg - startHeadingDeg) * (M_PI / 180.0)
+            ) * (180.0 / M_PI);
+            double degreesTurned = std::fabs(headingDeltaDeg);
+
+            motionMutex.take(TIMEOUT_MAX);
+            distanceTravelled = degreesTurned;
+            motionMutex.give();
 
             if (params.earlyExitRange > 0 && std::fabs(errorDeg) < params.earlyExitRange) {
                 exitedEarly = true;
@@ -89,4 +101,4 @@ namespace klib {
         motionMutex.give();
     }
 
-} // namespace klib
+} // klib
