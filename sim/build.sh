@@ -2,7 +2,7 @@
 set -euo pipefail
 cd "$(dirname "$0")"
 
-CORE_INCLUDE="../include/klib/autonomous/motion"
+CORE_INCLUDE="../include"
 CORE_SRC="../src/klib/autonomous/motion"
 
 g++ -std=c++17 -O2 -Wall -Wextra \
