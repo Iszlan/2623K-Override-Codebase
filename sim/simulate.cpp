@@ -73,7 +73,7 @@ int main() {
 
     // Example 2: practical multi-waypoint path across a 144x144in field
     {
-        Path fieldPath = Path::fromWaypoints({{24, 24}, {48, 60}, {96, 72}, {120, 120}});
+        Path fieldPath = Path::fromWaypoints({{-48, -48}, {-24, -12}, {24, 0}, {48, 48}});
         std::vector<PathPoint> pathPoints = fieldPath.generatePathPoints(0.1);
         std::cout << "[field example] path points: " << pathPoints.size()
                   << ", total arc length: " << fieldPath.getTotalArcLength() << " in\n";
@@ -109,6 +109,33 @@ int main() {
         std::cout << "[backward example] total time: " << profile.getTotalTime() << " s\n";
 
         writeTimeTrajectoryCsv("data/backward_example_time_trajectory.csv", profile.getTimeTrajectory());
+    }
+
+    
+    // Custom Route
+    {
+        Path customPath = Path::fromWaypoints({
+            {-48, -48},
+            {-24, -12},
+            {24, 24},
+            {30, 48}
+        });
+
+        std::vector<PathPoint> pathPoints = customPath.generatePathPoints(0.1);
+
+        TrajectoryConstraints constraints;
+        constraints.maxVelocity = 48.0;      // in/s
+        constraints.maxAcceleration = 90.0;  // in/s^2
+        constraints.trackWidth = 10.75;      // in
+        constraints.forwards = true;         // set false to test reverse driving
+
+        std::vector<TrajectoryPoint> trajectory = generateTrajectory(pathPoints, constraints);
+        MotionProfile profile(trajectory, constraints.trackWidth, 0.01);
+        std::cout << "[custom route] path length: " << customPath.getTotalArcLength()
+                   << " in, total time: " << profile.getTotalTime() << " s\n";
+
+        writePathPointsCsv("data/custom_route_path_points.csv", pathPoints);
+        writeTimeTrajectoryCsv("data/custom_route_time_trajectory.csv", profile.getTimeTrajectory());
     }
 
     std::cout << "Done. CSVs written to data/\n";
