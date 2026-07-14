@@ -115,10 +115,12 @@ int main() {
     // Custom Route
     {
         Path customPath = Path::fromWaypoints({
-            {-48, -48},
-            {-24, -12},
-            {24, 24},
-            {30, 48}
+            {0, 0},
+            {10, 4},
+            {24, 4},
+            {48, 10},
+            {-10, -5},
+            {-24, -24}
         });
 
         std::vector<PathPoint> pathPoints = customPath.generatePathPoints(0.1);
